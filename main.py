@@ -1,7 +1,6 @@
 from mtcnn import MTCNN
 import cv2
 from PIL import Image
-from PIL import Image
 from face_search import search_face
 import os 
 
@@ -21,12 +20,12 @@ def ResizeWithAspectRatio(image, width=None, height=None, inter=cv2.INTER_AREA):
 
     return cv2.resize(image, dim, interpolation=inter)
 
-# Detect face, search face and display reuslts
+# Detect face, search face and display results
 detector = MTCNN()
 def tagging_image(path): 
     im = Image.open(path)
     image = cv2.imread(path)
-    faces = detector.detect_faces(image)
+    faces = detector.detect_faces(image) # xem co bao nhieu guong mat trong hinh
     print("Results:")
     for face in faces:
         if face['confidence'] > 0.8:
@@ -34,6 +33,7 @@ def tagging_image(path):
             cv2.rectangle(image,(bounding_box[0], bounding_box[1]), 
                         (bounding_box[0]+bounding_box[2], bounding_box[1]+bounding_box[3]), 
                         (0,204,0),2)
+            # cut face from image
             crop_img = im.crop((bounding_box[0], bounding_box[1],
                                 bounding_box[0]+bounding_box[2], bounding_box[1]+bounding_box[3]))
             name = search_face(crop_img)

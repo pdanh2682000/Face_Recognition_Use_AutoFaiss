@@ -1,8 +1,7 @@
-clip-retrieval img2dataset autofaiss
+clip-retrieval
+img2dataset
+autofaiss
 mtcnn
 tensorflow
 torch
-os
 pandas
-pandas
-faiss

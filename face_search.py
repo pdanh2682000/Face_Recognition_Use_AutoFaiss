@@ -20,7 +20,8 @@ def search_face(image):
     image_embeddings = image_features.cpu().detach().numpy().astype('float32')
     D, I = ind.search(image_embeddings, 1)
     if D[0][0] > 0.8: 
-        name = os.path.basename(os.path.dirname(image_list[I[0][0]])) 
+        name = os.path.basename(os.path.dirname(image_list[I[0][0]]))
+        similarity = D[0][0]
         print("Name:",os.path.basename(os.path.dirname(image_list[I[0][0]])))
         print("Similarity:",D[0][0])
-        return name
+        return name, similarity
